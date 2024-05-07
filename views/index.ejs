@@ -12,8 +12,14 @@
         width: 100%;
     }
 
-    #again {
-        display: none;
+    button {
+        margin: 1rem;
+        text-align: center;
+
+    }
+
+    p {
+        font-size: larger;
     }
 </style>
 
@@ -39,7 +45,7 @@
 
             const para = document.createElement("a")
 
-            para.innerText = `Short: ${data.short}`
+            para.innerText = `${data.short}`
             para.href = `/${data.short}`
             urlContainer.appendChild(para)
 

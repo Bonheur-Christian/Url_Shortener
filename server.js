@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path')
 
 const shortUrl = require('./models/shortUrl');
 const app = express();
 
 app.use(bodyParser.json())
 app.set('view engine', 'ejs');
+
 app.use(express.urlencoded({ extended: false }))
 
 mongoose.connect("mongodb://localhost:27017/urlShortener")
@@ -23,7 +25,7 @@ db.once('open', () => {
 
 app.get('/', async (req, res) => {
     const shortUrls = await shortUrl.find()
-    res.render('index', { shortUrls: shortUrls })
+    res.render('../views/index', { shortUrls: shortUrls })
 })
 app.post('/shorturl', async (req, res) => {
     const short = await shortUrl.create({ full: req.body.fullUrl })
